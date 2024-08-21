@@ -1,0 +1,3 @@
+> Node.js a js runtime built on Chrome V8.
+> Can now be used on server side (back-end) and not only restricted to browser (client).
+> Node.js is single-threaded. Based on event driven, non-blocking I/O model.
