@@ -1,3 +1,14 @@
 > Node.js a js runtime built on Chrome V8.
 > Can now be used on server side (back-end) and not only restricted to browser (client).
 > Node.js is single-threaded. Based on event driven, non-blocking I/O model.
+
+--> http module:
+> http module can be used to create a server and then listen to it from a specific port on an ip (ex: localhost). The server gives a response via a callback function each time it gets hit with a request.
+> The callback function has request and response object as its arguments.
+> The request object contains among other things headers, method, url. request.url = /, /favicon.ico
+
+--> Routing:
+> Express is used to manage complex routing.
+> For simple routing, we can use url module.
+> The callback function in http.createServer is called twice when hit with a request. request.url is /{path entered} the first time and /favicon.ico the second time. This is done automatically by the browser.
+> Using response.writeHead we can return status code along with additional header information.
