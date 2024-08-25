@@ -12,3 +12,7 @@
 > For simple routing, we can use url module.
 > The callback function in http.createServer is called twice when hit with a request. request.url is /{path entered} the first time and /favicon.ico the second time. This is done automatically by the browser.
 > Using response.writeHead we can return status code along with additional header information.
+
+--> API:
+> A service from which we can request data.
+> In 1-node-farm project, the data is in data.json file.
