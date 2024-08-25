@@ -1,0 +1,34 @@
+--> URL:
+> URL consists of Protocol (HTTP | HTTPS), domain name (google.com | gmail.com), resource (/maps | /mailbox).
+> Domain name is not the real address of the server that we are trying to access. DNS (Domain Name Server) converts the domain name to actual server IP address when request is sent and sends it back to the browser.
+> The real address from DNS consists of Protocol (HTTP | HTTPS), IP address (216.58.211.206), port number (:443 | :80) (to identify specific service running on server, has nothing to do with resource).
+> Once the real address is obtained, a TCP/IP socket connnection is established between the client and server. This connnection is typically kept alive for the time it takes to transfer all the files of the website.
+> TCP (Transmission Control Protocol) / IP (Internet Protocol) defines how data travels across the web.
+
+> Finally a HTTP (HyperText Transfer Protocol) request is made. HTTP defines rules for how request and response is made between client and server. HTTPS is simply the encrypted version of HTTP.
+> A request message consists of:
+ - Start line: HTTP method (GET/POST/PUT/PATCH) + request target (/maps) + HTTP version.
+ - HTTP request headers: (what browser, time, language and other info) (automatically by browser)
+ - Request body: Only when sending data to server. Eg: POST
+
+> The server processes the request and sends an HTTP response.
+> A response message consists of:
+ - Start line: HTTP version + Status code + Status message
+ - HTTP response headers: (date, Content-Type, Transfer-Encoding and other info) (specified by back-end dev)
+ - Response body: Controlled by back-end dev. What we sent in response.end(HTML data/api data)
+
+> Many requests responses are made when accessing a website. At the first request, only the initial html file is received. The file is scanned for assets like js, css, images. For each of these assets, the browser makes a seperate HTTP request to the server.
+> After all files are received, the website is rendered in the browser.
+
+> Note about TCP/IP: It breaks the request and response into many chunks called packets before they are sent. At the destination, it will reassemble all the packets into the original request/response.
+Alse the TCP/TP is responsible for routing these packets through the internet using IP addresses on each packet.
+
+
+--> Static vs Dynamic Websites:
+> Static: Server sends final, ready to be displayed HTML, css, js etc files. No application or back-end logic exists.
+> Dynamic: Consists of db, application which fetches data from db and dynamically builds each page user requests based on data from db. Each time browser requests a page, that page is then built as HTML, CSS and JS files which is then sent back to the browser. This process is called Server Side Rendering (SSR).
+
+--> Website based on APIs (Application Programming Interface):
+> Consists of db, app which fetches data fromn db and only data is sent to the browser usually in json format and not the entire website. This is called building an API.
+> Rendering is handled by browser depending on data received. This is called consuming an API. Hence this is Client Side Rendered.
+> API can be consumed by browsers, IOS app, android app etc. Hence it has advantage over SSR as it can only be consumed by browsers.
