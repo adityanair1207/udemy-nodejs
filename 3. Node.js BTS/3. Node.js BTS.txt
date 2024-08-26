@@ -1,0 +1,12 @@
+> Node.js process works on a single thread. Event Loop is the heart of this process.
+> In Node.js, heavy tasks are offloaded by the Event Loop to the Thread Pool (which has 4 or more additional threads) so that the single thread is not blocked.
+
+--> Event Loop:
+> All the code inside callback functions (non-top-level-code) is executed by Event Loop with some parts getting offloaded to the Thread Pool.
+> Node.js is built around callback functions i.e. functions that are called as soon as some work is finished, some time in the future. This is because Node.js works on Event-driven architecture.
+> As soon as some work is finished, eg: HTTP request is received, an event is fired, the Event Loop picks up on this and calls the associated callback function.
+
+--> Order in which Node.js application is executed:
+> Initialize program -> Execute top-level-code -> Require modules -> Register event callbacks -> Start Event Loop
+> -> Event Loop start -> Expired timer callbacks (setTimeout) -> I/O polling and callbacks -> setImmediate callbacks -> close callbacks -> any pending I/O tasks or timer? -> start Event Loop again else exit program ->
+> process.nextTick queue is run after completion of any phase. So is resolved promises.
