@@ -1,7 +1,7 @@
-const fs = require("fs");
-const server = require("http").createServer();
+const fs = require('fs');
+const server = require('http').createServer();
 
-server.on("request", (req, res) => {
+server.on('request', (req, res) => {
   // Solution 1
   // fs.readFile("test-file.txt", (err, data) => {
   //   if (err) console.log(err);
@@ -23,11 +23,11 @@ server.on("request", (req, res) => {
   // });
 
   // Solution 3
-  const readable = fs.createReadStream("test-file.txt");
+  const readable = fs.createReadStream('test-file.txt');
   readable.pipe(res);
-  // readableSource.pipe(writeableDest)
+  // readableSourceStream.pipe(writeableDestinationStream)
 });
 
-server.listen(8000, "127.0.0.1", () => {
-  console.log("Listening...");
+server.listen(8000, '127.0.0.1', () => {
+  console.log('Listening...');
 });
