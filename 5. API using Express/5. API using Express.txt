@@ -1,0 +1,16 @@
+> All config is done in app.js in an express project.
+
+> API (Application Programming Interface) is a piece of software that is used by another piece of software allowing applications to communicate with each other.
+
+--> REST (Representational State Transfer) Architecture:
+> Making web-APIs in a logical way so that they are easy to consume (called RESTful APIs).
+> Separate API into logical resources.
+> Expose structured, resource-based URLs.
+> Use HTTP methods.
+> Send data as json (usually).
+> Be stateless.
+
+> Methods to support CRUD operations:
+POST, GET, PUT (client has to send entire object to be updated), PATCH (only send updated values), DELETE.
+
+> When making POST request in express, to send data along with request, middleware is required. This is because express does not put body data in the request object out-of-the-box.
