@@ -14,3 +14,11 @@
 POST, GET, PUT (client has to send entire object to be updated), PATCH (only send updated values), DELETE.
 
 > When making POST request in express, to send data along with request, middleware is required. This is because express does not put body data in the request object out-of-the-box.
+
+--> Middleware:
+> Executed in the middle of receiving a request and sending a response. Basically everything here is middleware.
+> In order to use middleware, we use app.use(). express.json() returns a middleware function which is added to the middleware stack. Hence we did: app.use(express.json());
+> Each middleware function has access to request object, response object and next function which is used to switch to the next middleware function in the stack.
+> res.status() or res.end() ends the request-response cycle and hence any middleware function that come after these in the middleware stack will not be executed.
+> So global middleware functions should be added before route handlers.
+> We can write ouw own middleware and add it to the middleware stack using app.use().
