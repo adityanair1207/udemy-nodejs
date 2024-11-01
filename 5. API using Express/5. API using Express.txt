@@ -22,3 +22,9 @@ POST, GET, PUT (client has to send entire object to be updated), PATCH (only sen
 > res.status() or res.end() ends the request-response cycle and hence any middleware function that come after these in the middleware stack will not be executed.
 > So global middleware functions should be added before route handlers.
 > We can write ouw own middleware and add it to the middleware stack using app.use().
+> There is a type of middleware called Param Middleware which only runs for certain parameters in the URL.
+> In Param Middleware we have access to value of the parameter as the last argument of the middleware function.
+> Middleware functions can be chained inside a request method. These run one after the other in order but next() is still required in them.
+
+> Serving static files from a folder: app.use(express.static(`${__dirname}/public`));
+> To access it localhost:3000/file_name. Since no such route is defined, the public folder is automatically checked to find the static file.

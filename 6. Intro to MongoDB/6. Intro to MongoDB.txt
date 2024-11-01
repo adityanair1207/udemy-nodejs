@@ -1,0 +1,12 @@
+> Each DB can contain on or more Collections/Tables.
+> Each Collection can contain one or more Documents/Rows.
+> Each Document contains data about one single entity. The data is stored as field-value pairs.
+> No document data schema is required. Each Document can have different number and type of fields.
+> MongoDB uses BSON data format. It is like JSON but typed. So MongoDB documents are typed.
+> MongoDB supports embedded documents.
+> Each document has an auto-generated unique id.
+
+> DB password: Y07ub9w50bOEeADl
+
+> https://www.mongodb.com/docs/manual/reference/insert-methods/
+> https://www.w3schools.com/mongodb/index.php
