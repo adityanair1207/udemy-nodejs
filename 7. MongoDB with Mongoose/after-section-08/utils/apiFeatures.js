@@ -5,13 +5,13 @@ class APIFeatures {
   }
 
   filter() {
-    const queryObj = { ...this.queryString };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach(el => delete queryObj[el]);
+    const queryObj = { ...this.queryString }; // done to create a new object
+    const excludedFields = ['page', 'sort', 'limit', 'fields']; // so as to not be passed as filter to DB
+    excludedFields.forEach(el => delete queryObj[el]); // filtering
 
-    // 1B) Advanced filtering
+    // advanced filtering
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`); // adding $ to make them MongoDB operators
 
     this.query = this.query.find(JSON.parse(queryStr));
 
@@ -20,10 +20,10 @@ class APIFeatures {
 
   sort() {
     if (this.queryString.sort) {
-      const sortBy = this.queryString.sort.split(',').join(' ');
+      const sortBy = this.queryString.sort.split(',').join(' '); // to sort by multiple fields
       this.query = this.query.sort(sortBy);
     } else {
-      this.query = this.query.sort('-createdAt');
+      this.query = this.query.sort('-createdAt'); // default sorting by createdAt descending
     }
 
     return this;
@@ -34,14 +34,14 @@ class APIFeatures {
       const fields = this.queryString.fields.split(',').join(' ');
       this.query = this.query.select(fields);
     } else {
-      this.query = this.query.select('-__v');
+      this.query = this.query.select('-__v'); // excluding __v field from DB
     }
 
     return this;
   }
 
   paginate() {
-    const page = this.queryString.page * 1 || 1;
+    const page = this.queryString.page * 1 || 1; // * 1 done to convert string to number
     const limit = this.queryString.limit * 1 || 100;
     const skip = (page - 1) * limit;
 

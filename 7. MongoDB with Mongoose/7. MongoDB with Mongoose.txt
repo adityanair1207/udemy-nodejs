@@ -1,1 +1,12 @@
-npm install mongodb
+npm install mongoose@5
+
+> Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js, giving a higher level
+of abstraction.
+
+> A model is like a blueprint to create a MongoDB document. To create a model we need a schema.
+> Schema is used to set type of data, validation, setting default values.
+> Fields not included in schema are ignored when saving to DB.
+> Methods called on a model return a Query object. When awaited, we get a document.
+> In query string gt, gte, lt, lte can be added like this: duration[gte]=5
+> To sort by descending: sort=-price
+> To sort by multiple fields: sort=price,ratingsAverage

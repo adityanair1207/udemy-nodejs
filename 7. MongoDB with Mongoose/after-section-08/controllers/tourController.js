@@ -10,6 +10,19 @@ exports.aliasTopTours = (req, res, next) => {
 
 exports.getAllTours = async (req, res) => {
   try {
+    /*
+    const tours = await Tour.find({
+      duration: 5,
+      difficulty: 'easy'
+    });
+    // OR
+    const tours = await Tour.find()
+      .where('duration')
+      .equals(5)
+      .where('difficulty')
+      .equals('easy');
+    */
+
     // EXECUTE QUERY
     const features = new APIFeatures(Tour.find(), req.query)
       .filter()
@@ -36,8 +49,7 @@ exports.getAllTours = async (req, res) => {
 
 exports.getTour = async (req, res) => {
   try {
-    const tour = await Tour.findById(req.params.id);
-    // Tour.findOne({ _id: req.params.id })
+    const tour = await Tour.findById(req.params.id); // shorthand for: await Tour.findOne({ _id: req.params.id });
 
     res.status(200).json({
       status: 'success',
@@ -55,10 +67,10 @@ exports.getTour = async (req, res) => {
 
 exports.createTour = async (req, res) => {
   try {
-    // const newTour = new Tour({})
-    // newTour.save()
+    // const newTour = new Tour(req.body);
+    // newTour.save(); // calling save method on document
 
-    const newTour = await Tour.create(req.body);
+    const newTour = await Tour.create(req.body); // create method can be called directly on the model to create a new Tour document
 
     res.status(201).json({
       status: 'success',
@@ -77,8 +89,8 @@ exports.createTour = async (req, res) => {
 exports.updateTour = async (req, res) => {
   try {
     const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
+      new: true, // to return new updated document
+      runValidators: true // to run the validators from schema
     });
 
     res.status(200).json({
@@ -155,6 +167,7 @@ exports.getMonthlyPlan = async (req, res) => {
     const year = req.params.year * 1; // 2021
 
     const plan = await Tour.aggregate([
+      // a doc for each startDate
       {
         $unwind: '$startDates'
       },
@@ -183,10 +196,10 @@ exports.getMonthlyPlan = async (req, res) => {
       },
       {
         $sort: { numTourStarts: -1 }
-      },
-      {
-        $limit: 12
       }
+      // {
+      //   $limit: 6
+      // }
     ]);
 
     res.status(200).json({
