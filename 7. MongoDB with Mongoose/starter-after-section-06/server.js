@@ -18,7 +18,8 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false
   })
-  .then(con => {
+  .then(() => {
+    // con =>
     // console.log(con.connections);
     console.log('DB connection successful!');
   });
@@ -53,7 +54,7 @@ const testTour = new Tour({
 testTour
   .save()
   .then(doc => console.log('saved: ', doc))
-  .catch(err => console.log('error in saving'));
+  .catch(err => console.log('error in saving:', err));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
